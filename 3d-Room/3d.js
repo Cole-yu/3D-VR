@@ -28,6 +28,8 @@ function init() {
   // invert the geometry on the x-axis so that all of the faces point inward
   geometry.scale(-1, 1, 1);
 
+
+  //产生cors跨域资源请求
   var material = new THREE.MeshBasicMaterial({
     map:new THREE.TextureLoader().load('./textures/2294472375_24a3b8ef46_o.jpg')
   });
@@ -45,8 +47,6 @@ function init() {
   document.addEventListener('mousemove', onDocumentMouseMove, false);
   document.addEventListener('mouseup', onDocumentMouseUp, false);
   document.addEventListener('wheel', onDocumentMouseWheel, false);
-
-  //
 
   document.addEventListener('dragover', function(event) {
 
@@ -67,9 +67,6 @@ function init() {
 
   }, false);
 
-
-
-  //产生cors跨域资源请求
   document.addEventListener('drop', function(event) {
 
     event.preventDefault();
