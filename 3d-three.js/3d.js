@@ -1,4 +1,4 @@
-var renderer,scene,camera,light,cube;
+var renderer,scene,camera,light,mesh;
 var fov=50,aspect=16/9;near=5,far=50;//透视投影照相机参数
 var stats;//性能监控面板,fps
 var deg=0,camX=0,camY=15,camZ=20;//照相机位置参数
@@ -94,17 +94,28 @@ function mains(){
 	light.position.set(0, 15, 35);  //设置光源的位置
 
 	//创建物体
-	// var geometry = new THREE.BoxGeometry (5, 5, 5);//创建形状
-	var geometry=new THREE.SphereGeometry(5);
-
+	var geometry=new THREE.SphereGeometry(5);	      //创建球体形状
 	var material = new THREE.MeshLambertMaterial({
 	    color: "yellow",     //设置颜色为yellow
 	});
+	mesh = new THREE.Mesh(geometry,material);
 
-	// var material = new THREE.MeshPhongMaterial({
-	//  color: "yellow" //设置颜色为yellow
-	// });
-	cube = new THREE.Mesh(geometry,material);
+	//加载模型
+// A begin
+    // var material = new THREE.MeshLambertMaterial( { color:0xffffff, side: THREE.DoubleSide } );
+    // var loader = new THREE.VTKLoader();
+    // loader.addEventListener( 'load', function ( event ) {
+    //     var geometry = event.content;
+    //     mesh = new THREE.Mesh( geometry, material );
+    //     mesh.position.setY( - 0.09 );
+    //     // scene.add( mesh );
+    // } );
+    // loader.load( "./asset/bunny1.vtk" );//js读写本地文件，写前端系统日志
+// A end
+
+
+
+	
 
 
 	// 网格的边长是1000，分成1000等分，每个小网格的边长是1
@@ -112,9 +123,8 @@ function mains(){
 
     
     scene.add( helper );//添加辅助线
-	
 	scene.add(light);//把光源和物体加入到场景中
-	scene.add(cube);//添加实体
+	scene.add(mesh);//添加实体
 }
 
 
@@ -129,20 +139,20 @@ function animation()
 {	
 	// var ran=Math.random(0,1);
 	// if(ran>=0&&ran<0.4){
-	// 	cube.rotateX(0.01);
+	// 	mesh.rotateX(0.01);
 	// }
 	// if(ran>=0.4&&ran<0.7){
-	// 	cube.rotateY(0.01);	
+	// 	mesh.rotateY(0.01);	
 	// }
 	// if(ran>=0.7&&ran<=1){
-	// 	cube.rotateZ(0.01);
+	// 	mesh.rotateZ(0.01);
 	// }
-	//cube.rotateX(0.015);
+	//mesh.rotateX(0.015);
 
 	// camera.position.x =camera.position.x +0.01;
-	// cube.position.x-=0.01;
+	// mesh.position.x-=0.01;
 	stats.begin();
-	cube.rotation.y +=0.01;
+	mesh.rotation.y +=0.01;
 	renderer.render(scene, camera);//将场景及照相机渲染出来
 	stats.end();
 	requestAnimationFrame(animation);
