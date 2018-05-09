@@ -9,7 +9,6 @@ var canvas = document.getElementById("cas"),
     angleX = Math.PI/100,
     angleY = Math.PI/100;
 
-
     window.addEventListener("mousemove" , function(event){
         var x = event.clientX - canvas.offsetLeft - vpx;
         var y = event.clientY - canvas.offsetTop - vpy;
